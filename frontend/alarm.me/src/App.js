@@ -3,10 +3,17 @@ import { Switch, Route } from 'react-router-dom'
 
 import { Account, Home, Landing, Navagation } from './components'
 import * as routes from './constants/routes.js'
+import Auth from './Auth/auth.js';
 
 import './App.scss';
 
 class App extends Component {
+
+  componentDidMount() {
+    const auth = new Auth();
+    auth.login();
+  }
+
   render() {
     return (
       <div className="App">
