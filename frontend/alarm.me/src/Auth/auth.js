@@ -1,6 +1,6 @@
-import auth0 from 'auth0-js';
+import auth0 from 'auth0-js'
 
-export default class Auth {
+class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'alarm-me.auth0.com',
     clientID: 'yiZzwvCDiqDHCPwJpzEbPS2Jo4SSAkTT',
@@ -9,7 +9,9 @@ export default class Auth {
     scope: 'openid'
   });
 
-  login() {
+  login = () => {
     this.auth0.authorize();
   }
 }
+
+export default Auth;

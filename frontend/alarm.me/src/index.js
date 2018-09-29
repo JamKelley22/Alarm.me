@@ -4,13 +4,13 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import { BrowserRouter } from 'react-router-dom'
+import { Router } from 'react-router-dom'
 import { history } from './history.js'
 
 ReactDOM.render((
-  <BrowserRouter history={history}>
+  <Router history={history}>
     <App />
-  </BrowserRouter>
+  </Router>
 ), document.getElementById('root'));
 
 registerServiceWorker();
