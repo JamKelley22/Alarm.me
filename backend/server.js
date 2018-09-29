@@ -6,21 +6,13 @@ var cors = require('cors');
 // GraphQL schema
 var schema = buildSchema(`
     type Query {
-        course(id: Int!): Course
-        courses(topic: String): [Course]
         alarm(id: Int!, userID: Int!): Alarm
-        alarms(userID: Int!): [Alarm]
+        alarms(userID: Int): [Alarm]
     },
     type Mutation {
-        updateCourseTopic(id: Int!, topic: String!): Course
-    },
-    type Course {
-      id: Int
-      title: String
-      author: String
-      description: String
-      topic: String
-      url: String
+        createAlarm(userID: Int!, dateTime: String!, title: String!, note: String!, color: String!): Alarm
+        updateAlarm(id: Int!, userID: Int!, dateTime: String!, title: String!, note: String!, color: String!): Alarm
+        deleteAlarm(id: Int!): Alarm
     },
     type Alarm {
       id: Int
@@ -36,35 +28,7 @@ var schema = buildSchema(`
     }
 `);
 
-//Data
-var coursesData = [
-    {
-        id: 1,
-        title: 'The Complete Node.js Developer Course',
-        author: 'Andrew Mead, Rob Percival',
-        description: 'Learn Node.js by building real-world applications with Node, Express, MongoDB, Mocha, and more!',
-        topic: 'Node.js',
-        url: 'https://codingthesmartway.com/courses/nodejs/'
-    },
-    {
-        id: 2,
-        title: 'Node.js, Express & MongoDB Dev to Deployment',
-        author: 'Brad Traversy',
-        description: 'Learn by example building & deploying real-world Node.js applications from absolute scratch',
-        topic: 'Node.js',
-        url: 'https://codingthesmartway.com/courses/nodejs-express-mongodb/'
-    },
-    {
-        id: 3,
-        title: 'JavaScript: Understanding The Weird Parts',
-        author: 'Anthony Alicea',
-        description: 'An advanced JavaScript course for everyone! Scope, closures, prototypes, this, build your own framework, and more.',
-        topic: 'JavaScript',
-        url: 'https://codingthesmartway.com/courses/understand-javascript/'
-    }
-]
-
-var alarmData = [
+let alarmData = [
   {
     id: 1,
     userID: 1,
@@ -81,16 +45,95 @@ var alarmData = [
     note: "Go to class!",
     color: "blue"
   },
+  {
+    id: 2,
+    userID: 1,
+    dateTime: "2010-10-20 4:30",
+    title: "Wake Up",
+    note: "Go to class!",
+    color: "blue"
+  },
+  {
+    id: 2,
+    userID: 1,
+    dateTime: "2010-10-20 4:30",
+    title: "Wake Up",
+    note: "Go to class!",
+    color: "blue"
+  },
+  {
+    id: 2,
+    userID: 1,
+    dateTime: "2010-10-20 4:30",
+    title: "Wake Up",
+    note: "Go to class!",
+    color: "blue"
+  },
+  {
+    id: 2,
+    userID: 1,
+    dateTime: "2010-10-20 4:30",
+    title: "Wake Up",
+    note: "Go to class!",
+    color: "blue"
+  },
+  {
+    id: 2,
+    userID: 1,
+    dateTime: "2010-10-20 4:30",
+    title: "Wake Up",
+    note: "Go to class!",
+    color: "blue"
+  },
+  {
+    id: 2,
+    userID: 1,
+    dateTime: "2010-10-20 4:30",
+    title: "Wake Up",
+    note: "Go to class!",
+    color: "blue"
+  },
+  {
+    id: 2,
+    userID: 1,
+    dateTime: "2010-10-20 4:30",
+    title: "Wake Up",
+    note: "Go to class!",
+    color: "blue"
+  },
+  {
+    id: 2,
+    userID: 1,
+    dateTime: "2010-10-20 4:30",
+    title: "Wake Up",
+    note: "Go to class!",
+    color: "blue"
+  },
+  {
+    id: 2,
+    userID: 1,
+    dateTime: "2010-10-20 4:30",
+    title: "Wake Up",
+    note: "Go to class!",
+    color: "blue"
+  },
+  {
+    id: 2,
+    userID: 1,
+    dateTime: "2010-10-20 4:30",
+    title: "Wake Up",
+    note: "Go to class!",
+    color: "blue"
+  },
 ]
+let idCount = alarmData.length;
 
-var updateCourseTopic = ({id, topic}) => {
-  coursesData.map(course => {
-    if(course.id === id) {
-      course.topic = topic;
-      return course;
+var deleteAlarm = ({id}) => {
+  alarmData.forEach((alarm, i) => {
+    if(alarm.id === id) {
+      return alarmData.splice(i,1);
     }
-  });
-  return coursesData.filter(course => course.id === id)[0];
+  })
 }
 
 var getAlarm = (args) => {
@@ -105,16 +148,42 @@ var getAlarms = (args) => {
     return alarmData.filter(alarm => alarm.userID === args.userID);
   }
   else {
-    return [];
+    return alarmData;
   }
+}
+
+var createAlarm = (args) => {
+  let newAlarm = {
+    id: idCount++,
+    userID: args.userIS,
+    dateTime: args.dateTime,
+    title: args.title,
+    note: args.note,
+    color: args.color
+  };
+  alarmData.push(newAlarm);
+  return newAlarm;
+}
+
+var updateAlarm = (args) => {
+  let alarmIndex = alarmData.findIndex((alarm => alarm.id == args.id));
+  //dateTime: String!, title: String!, note: String!, color: String!
+  if(args.dateTime) {alarmData[alarmIndex].dateTime = args.dateTime;}
+  if(args.title) {alarmData[alarmIndex].title = args.title;}
+  if(args.note) {alarmData[alarmIndex].note = args.note;}
+  if(args.color) {alarmData[alarmIndex].color = args.color;}
+
+  return alarmData[alarmIndex];
 }
 
 // Root resolver
 var root = {
-    updateCourseTopic: updateCourseTopic,
     alarm: getAlarm,
-    alarms: getAlarms
+    alarms: getAlarms,
+    deleteAlarm: deleteAlarm,
+    createAlarm: createAlarm
 };
+
 // Create an express server and a GraphQL endpoint
 var app = express();
 app.use('/graphql', cors(), express_graphql({
