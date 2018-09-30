@@ -7,6 +7,19 @@ import { Query, Mutation } from "react-apollo";
 import { GET_ALARMS, DELETE_ALARM, CREATE_ALARM} from './gqlQueries.js'
 
 class Home extends React.Component {
+  state = {
+    time: moment(new Date()).format('LTS')
+  }
+
+  componentDidMount() {
+    let TIME_INTERVAL = 1000;
+    setInterval(() => {
+      this.setState({
+        time: moment(new Date()).format('LTS')
+      })
+    },TIME_INTERVAL
+    );
+  }
 
   _updateStoreAfterDelete = (store, alarms, alarmId) => {
     const data = store.readQuery({ query: GET_ALARMS })
@@ -20,6 +33,7 @@ class Home extends React.Component {
     return (
       <div>
         <h1>Home</h1>
+        <h1>{this.state.time}</h1>
         <h1>Alarms</h1>
 
         <Query

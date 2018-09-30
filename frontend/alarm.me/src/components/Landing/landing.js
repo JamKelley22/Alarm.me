@@ -1,10 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { Util } from '../index.js'
 
 class Landing extends React.Component {
   render () {
     return (
-      <p>Landing</p>
+      <div>
+        <Util.Button/>
+      </div>
     );
   }
 }
