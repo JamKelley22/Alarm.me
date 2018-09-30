@@ -2,10 +2,11 @@
 import Account from './Account/account.js'
 import Home from './Home/home.js'
 import Landing from './Landing/landing.js'
-import Navagation from './Navagation/navagation.js'
+import Top from './Top/top.js'
+import About from './About/about.js'
 import Error404 from './Error/error404.js'
 
 //Util Components
 import * as Util from './Util/index.js'
 
-export { Account, Home, Landing, Navagation, Error404, Util }
+export { Account, Home, Landing, Top, Error404, About, Util }

@@ -1,10 +1,19 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+
+import { Top } from '../index.js'
 
 class Account extends React.Component {
   render () {
     return (
-      <p>Account</p>
+      <React.Fragment>
+        <Top
+          showAlarms={false}
+        />
+
+        <div>
+          <h1>Account</h1>
+        </div>
+      </React.Fragment>
     );
   }
 }

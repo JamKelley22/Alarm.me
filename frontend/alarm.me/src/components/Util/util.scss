@@ -1,22 +1,49 @@
 @import '../../colors';
 
-button {
-  border: none;
-}
+$borderRadiusSmall: 12px;
+$borderRadiusMedium: 15px;
+$borderRadiusLarge: 25px;
 
+$clickDistance: 3px;
+
+button, input {
+  border: none;
+  outline: none;
+}
+/*=============Button=============*/
 .button {
   background-color: $brown;
   color: $blue;
-
-  width: 120px;
   max-width: 100%;
-  height: 40px;
+  margin: 10px;
 
-  border-radius: 30%;
-  border-top-left-radius: 0%;
-  border-bottom-right-radius: 0%;
+  box-shadow: $clickDistance $clickDistance 0px darken( $brown, 10% );
 }
-
+.buttonSmall {
+  width: 100px;
+  height: 25px;
+  font-size: 15px;
+  border-radius: 0% $borderRadiusSmall 0% $borderRadiusSmall;
+}
+.buttonMedium {
+  width: 120px;
+  height: 30px;
+  font-size: 18px;
+  border-radius: 0% $borderRadiusMedium 0% $borderRadiusMedium;
+}
+.buttonLarge {
+  width: 140px;
+  height: 50px;
+  font-size: 25px;
+  border-radius: 0% $borderRadiusLarge 0% $borderRadiusLarge;
+}
 .button:hover {
-  
+  transform: translateY($clickDistance * .4) translateX($clickDistance * .4);
+  box-shadow: $clickDistance * .6 $clickDistance * .6 0px darken( $brown, 10% );
+  background-color: lighten($brown, 5%);
 }
+.button:active {
+  transform: translateY($clickDistance) translateX($clickDistance);
+  box-shadow: none;
+}
+/*================================*/

@@ -1,3 +1,6 @@
 import createHistory from 'history/createBrowserHistory'
+import * as routes from './constants/routes.js'
 
-export const history = createHistory();
+const history = createHistory();
+
+export { history, routes }
