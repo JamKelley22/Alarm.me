@@ -101,7 +101,7 @@ class Top extends React.Component {
 
 
         <div>
-          <div className='area appNameArea' onClick={() => history.push(routes._HOME)}>
+          <div className='area appNameArea' onClick={() => history.push(routes._LANDING)}>
             <span className='appName'>Alarm.Me</span>
           </div>
         </div>

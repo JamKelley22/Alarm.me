@@ -10,6 +10,7 @@
   flex-direction: column;
   position: relative;
 
+  /*
   @include mobile {
     background-color: green;
   }
@@ -25,4 +26,5 @@
   @include desktop {
     background-color: $blue;
   }
+  */
 }
