@@ -37,10 +37,9 @@ class Home extends React.Component {
             {moment(this.state.time).format('LT')}
             <div id='secondsBarWrapper'>
               <SecondsBar
-                numSeconds={parseInt(moment(this.state.time).format('s'))}
+                numSeconds={parseInt(moment(this.state.time).format('s'), 10)}
               />
             </div>
-
           </div>
 
           <div id='day'>

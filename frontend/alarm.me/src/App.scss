@@ -1,11 +1,28 @@
 @import 'colors';
+@import 'mediaQuery';
 
 .App {
   background-color: $blue;
   height: 100%;
   max-height: 100%;
-  overflow-y: hidden;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   position: relative;
+
+  @include mobile {
+    background-color: green;
+  }
+
+  @include tablet {
+    background-color: red;
+  }
+
+  @include laptop {
+    background-color: blue;
+  }
+
+  @include desktop {
+    background-color: $blue;
+  }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
+import to from 'await-to-js';
 
 import { Account, Home, Landing, About, Error404 } from './components'
 import * as routes from './constants/routes.js'
@@ -12,11 +13,11 @@ import ApolloClient from "apollo-boost";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPlusCircle, faTrash, faFeatherAlt, faUser, faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
+import { URI } from './constants/endpoints.js'
+
 import './App.scss';
 
 library.add(faPlusCircle, faTrash, faFeatherAlt, faUser, faCaretUp, faCaretDown);
-
-const URI = "http://localhost:4000/graphql";
 
 const client = new ApolloClient({
   uri: URI
@@ -38,20 +39,27 @@ class App extends Component {
         color
       }
     }`
-    let response = await fetch(URI, {
+
+    console.log(URI);
+    let response, data, err;
+    [ err, response ] = await to(fetch(URI, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
       body: JSON.stringify({query: QUERY})
-    })
-    if(response != undefined) {
-      let data = await response.json();
-
-      console.log(data);
+    }))
+    if(err) {
+      console.error(err);
+      return;
     }
-
+    [ err, data ] = await to(response.json());
+    if(err) {
+      console.error(err);
+      return;
+    }
+    console.log(data);
   }
 
   login = () => {
