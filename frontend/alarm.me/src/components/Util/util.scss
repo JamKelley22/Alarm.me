@@ -37,6 +37,10 @@ button, input {
   font-size: 25px;
   border-radius: 0% $borderRadiusLarge 0% $borderRadiusLarge;
 }
+.square {
+  width: 30px;
+  height: 30px;
+}
 .button:hover {
   transform: translateY($clickDistance * .4) translateX($clickDistance * .4);
   box-shadow: $clickDistance * .6 $clickDistance * .6 0px darken( $brown, 10% );
@@ -45,5 +49,8 @@ button, input {
 .button:active {
   transform: translateY($clickDistance) translateX($clickDistance);
   box-shadow: none;
+}
+.buttonText svg{
+  padding: 0px;
 }
 /*================================*/

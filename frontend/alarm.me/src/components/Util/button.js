@@ -5,16 +5,17 @@ import './util.scss'
 
 const Button = (props) => {
   let btn;
+  let isSquare = (props.square) ? 'square' : '';
 
   switch (props.size) {
     case 'small':
       btn = (
         <button
         onClick={props.onClick}
-        className={'button buttonSmall'}>
+        className={`button buttonSmall ${isSquare}`}>
           <span
           className='buttonText'>
-            {props.name}
+            {props.children || props.name}
           </span>
         </button>
       )
@@ -23,10 +24,10 @@ const Button = (props) => {
       btn = (
         <button
         onClick={props.onClick}
-        className={'button buttonMedium'}>
+        className={`button buttonMedium ${isSquare}`}>
           <span
           className='buttonText'>
-            {props.name}
+            {props.children || props.name}
           </span>
         </button>
       )
@@ -35,10 +36,10 @@ const Button = (props) => {
       btn = (
         <button
           onClick={props.onClick}
-          className={'button buttonLarge'}>
+          className={`button buttonLarge ${isSquare}`}>
             <span
             className='buttonText'>
-              {props.name}
+              {props.children || props.name}
             </span>
         </button>
       )
@@ -47,10 +48,10 @@ const Button = (props) => {
       btn = (
         <button
           onClick={props.onClick}
-          className={'button'}>
+          className={`button ${isSquare}`}>
             <span
             className='buttonText'>
-              {props.name}
+              {props.children || props.name}
             </span>
         </button>
       )
@@ -67,11 +68,13 @@ export default Button;
 Button.propTypes = {
   name: PropTypes.string,
   onClick: PropTypes.func,
-  size: PropTypes.oneOf(['small', 'medium', 'large'])
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  square: PropTypes.bool
 };
 
 Button.defaultProps = {
   name: 'Click Me',
   onClick: () => console.warn("Buttons need an onClick prop function!"),
-  size: 'medium'
+  size: 'medium',
+  square: false
 };

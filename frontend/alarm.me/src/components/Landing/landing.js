@@ -10,14 +10,6 @@ import './landing.scss'
 
 class Landing extends React.Component {
 
-  signUp = () => {
-
-  }
-
-  signIn = () => {
-
-  }
-
   render () {
     return (
       <div className='landing'>
@@ -36,12 +28,12 @@ class Landing extends React.Component {
           <Util.Button
             name='Sign Up'
             size='medium'
-            onClick={this.signUp}
+            onClick={() => history.push(routes._SIGNUP)}
           />
           <Util.Button
             name='Sign In'
             size='medium'
-            onClick={this.signIn}
+            onClick={() => history.push(routes._LOGIN)}
           />
         </div>
         <div className='landing__row4 landing__row'>

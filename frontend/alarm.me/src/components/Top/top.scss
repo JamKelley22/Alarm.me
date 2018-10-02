@@ -15,8 +15,7 @@ $DESTOP_MIN_WIDTH: 1025px;
 .area {
   background-color: $tan;
   padding: 10px;
-  box-shadow: 3px 3px 10px darkgray;
-
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
 }
 
 .alarmArea {

@@ -2,22 +2,22 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom'
 import to from 'await-to-js';
 
-import { Account, Home, Landing, About, Error404 } from './components'
+import { Account, Home, Landing, About, Login, Signup, Error404 } from './components'
 import * as routes from './constants/routes.js'
-import Auth from './Auth/auth.js';
 import { history } from './history';
 
 import { ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
 
 import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faPlusCircle, faTrash, faFeatherAlt, faUser, faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
 import { URI } from './constants/endpoints.js'
 
 import './App.scss';
 
-library.add(faPlusCircle, faTrash, faFeatherAlt, faUser, faCaretUp, faCaretDown);
+library.add(fab, faPlusCircle, faTrash, faFeatherAlt, faUser, faCaretUp, faCaretDown);
 
 const client = new ApolloClient({
   uri: URI
@@ -62,11 +62,6 @@ class App extends Component {
     console.log(data);
   }
 
-  login = () => {
-    const auth = new Auth();
-    auth.login();
-  }
-
   pushHistory = () => {
     history.push({ pathname: routes._HOME })
   }
@@ -78,6 +73,8 @@ class App extends Component {
           <Switch>
             <Route exact path={routes._LANDING} component={Landing}/>
             <Route exact path={routes._HOME} component={Home}/>
+            <Route exact path={routes._LOGIN} component={Login}/>
+            <Route exact path={routes._SIGNUP} component={Signup}/>
             <Route exact path={routes._ACCOUNT} component={Account}/>
             <Route exact path={routes._ABOUT} component={About}/>
             <Route component={() => <Error404/>} />
