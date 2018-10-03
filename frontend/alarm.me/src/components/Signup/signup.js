@@ -5,6 +5,34 @@ import { history, routes } from '../../history.js'
 
 import './signup.scss'
 
+let SignupFormComponents = () =>
+[
+  {
+    type: 'input',
+    label: 'Title',
+    placeholder: 'Class',
+    isValid: ['!null']
+  },
+  {
+    type: 'input',
+    label: 'Note',
+    placeholder: '8 AM',
+    isValid: ['!null']
+  },
+  {
+    type: 'password',
+    label: 'Password',
+    placeholder: 'Lary123',
+    isValid: ['!null']
+  },
+  {
+    type: 'password',
+    label: 'Confirm Password',
+    placeholder: 'Lary123',
+    isValid: ['!null']
+  }
+]
+
 const Signup = (props) => {
   return (
     <div className='signup'>
@@ -16,32 +44,7 @@ const Signup = (props) => {
           cancelText='Cancel'
           onConfirm={(res) => {console.log(res)}}
           onCancel={() => {history.push(routes._LANDING)}}
-          formComponents={[
-            {
-              type: 'input',
-              label: 'Title',
-              placeholder: 'Class',
-              isValid: ['!null']
-            },
-            {
-              type: 'input',
-              label: 'Note',
-              placeholder: '8 AM',
-              isValid: ['!null']
-            },
-            {
-              type: 'password',
-              label: 'Password',
-              placeholder: 'Lary123',
-              isValid: ['!null']
-            },
-            {
-              type: 'password',
-              label: 'Confirm Password',
-              placeholder: 'Lary123',
-              isValid: ['!null']
-            }
-          ]}
+          formComponents={SignupFormComponents}
         />
       </div>
     </div>

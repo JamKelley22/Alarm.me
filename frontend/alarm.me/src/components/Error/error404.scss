@@ -1,0 +1,151 @@
+@import '../../colors';
+@import '../../mediaQuery';
+
+.error404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+}
+
+.error404__row {
+  margin-bottom: 20px;
+  z-index: 1;
+}
+.error404__row1 {
+  margin-bottom: 0px;
+}
+.error404__row2 {
+  margin-bottom: 50px;
+}
+
+.fontawesome__feather {
+  color: $brown;
+
+  -moz-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+.fontawesome__feather:hover {
+
+}
+
+.appname {
+  color: $brown;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.svg {
+  position: absolute;
+  z-index: 0;
+}
+
+@include mobile {
+  /*background-color: green;*/
+  .appname {
+    font-size: 80px;
+  }
+  .fontawesome__feather {
+    font-size: 80px;
+  }
+  .error404__row3 {
+    transform: scale(1.5, 1.5);
+    display: flex;
+    flex-direction: column;
+  }
+  .error404__row4 {
+    margin-top: 20px;
+    transform: scale(1.2, 1.2);
+  }
+  .svg {
+    display: none;
+  }
+}
+
+@include tablet {
+  /*background-color: red;*/
+  .appname {
+    font-size: 80px;
+  }
+  .fontawesome__feather {
+    font-size: 80px;
+  }
+  .error404__row3 {
+    transform: scale(.9, .9);
+  }
+  .error404__row4 {
+    transform: scale(.9, .9);
+  }
+  .svg {
+    transform: scale(.5,.5);
+  }
+  .leftSVG {
+    right: 40%;
+    top: 15%;
+  }
+  .rightSVG {
+    left: 45%;
+    bottom: 10%;
+  }
+}
+
+@include laptop {
+  /*background-color: blue;*/
+  .appname {
+    font-size: 100px;
+  }
+  .fontawesome__feather {
+    font-size: 100px;
+  }
+  .error404__row3 {
+    transform: scale(1, 1);
+  }
+  .error404__row4 {
+    transform: scale(1, 1);
+  }
+  .svg {
+    transform: scale(.7,.7);
+  }
+  .leftSVG {
+    right: 50%;
+    top: -15%;
+
+  }
+  .rightSVG {
+    left: 45%;
+    bottom: -15%;
+  }
+}
+
+@include desktop {
+  /*background-color: $blue;*/
+  .appname {
+    font-size: 100px;
+  }
+  .fontawesome__feather {
+    font-size: 100px;
+  }
+  .error404__row3 {
+    transform: scale(1, 1);
+  }
+  .error404__row4 {
+    transform: scale(1, 1);
+  }
+  .svg {
+    transform: scale(.7,.7);
+  }
+  .leftSVG {
+    right: 50%;
+    top: -15%;
+
+  }
+  .rightSVG {
+    left: 45%;
+    bottom: -15%;
+  }
+}

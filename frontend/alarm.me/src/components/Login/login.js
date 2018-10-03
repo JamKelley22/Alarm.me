@@ -5,6 +5,23 @@ import { history, routes } from '../../history.js'
 
 import './login.scss'
 
+let LoginFormComponents = () =>
+[{
+    type: 'input',
+    label: 'Title',
+    placeholder: 'Class'
+  },
+  {
+    type: 'input',
+    label: 'Note',
+    placeholder: '8 AM',
+  },
+  {
+    type: 'password',
+    label: 'Password',
+    placeholder: 'Lary123'
+  }]
+
 const Login = (props) => {
   return (
     <div className='login'>
@@ -16,23 +33,7 @@ const Login = (props) => {
           cancelText='Cancel'
           onConfirm={(res) => {console.log(res)}}
           onCancel={() => {history.push(routes._LANDING)}}
-          formComponents={[
-            {
-              type: 'input',
-              label: 'Title',
-              placeholder: 'Class'
-            },
-            {
-              type: 'input',
-              label: 'Note',
-              placeholder: '8 AM',
-            },
-            {
-              type: 'password',
-              label: 'Password',
-              placeholder: 'Lary123'
-            }
-          ]}
+          formComponents={LoginFormComponents}
         />
       </div>
     </div>

@@ -20,10 +20,18 @@ const Alarm = (props) => {
           {moment(props.dateTime).format('ddd')}
         </div>
 
-        <div className='alarm__delete'>
+        <div className='alarm__icons'>
           <div>
             <FontAwesomeIcon
-            className='fontawesome__trash'
+            className='fontawesome__edit alarm__icon'
+            icon='edit'
+            onClick={props.onEditAlarm}
+            />
+          </div>
+
+          <div>
+            <FontAwesomeIcon
+            className='fontawesome__trash alarm__icon'
             icon='trash'
             onClick={props.deleteAlarm}
             />

@@ -48,7 +48,9 @@ class Form extends React.Component {
   componentDidMount = () => {
     let componentNamesForState = [];
 
-    this.props.formComponents.forEach((component, i) => {
+    console.log(this.props.formComponents());
+
+    this.props.formComponents().forEach((component, i) => {
       switch (component.type) {
         case 'input':
           let inputName = `input_${component.label}`
@@ -108,9 +110,8 @@ class Form extends React.Component {
         FormIcon = (<FontAwesomeIcon className='formIcon formIconFlip' icon='feather-alt' />)
     }
 
-
     let componentList = (
-      this.props.formComponents.map((component, i) => {
+      this.props.formComponents().map((component, i) => {
         switch (component.type) {
           case 'input':
             let inputName = `input_${component.label}`

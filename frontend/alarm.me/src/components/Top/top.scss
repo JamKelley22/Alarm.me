@@ -91,9 +91,6 @@ hr {
     color: darken($brown, 20%);
   }
 }
-.fontawesome__trash:hover {
-  color: darken(red, 20%);
-}
 .plusCircle {
   position: relative;
   float: right;
@@ -142,10 +139,22 @@ hr {
 .alarm__day {
   margin: 5px;
 }
-.alarm__delete {
+.alarm__icons {
   margin: 5px;
+  display: flex;
 }
 
 .fontawesome {
   color: $brown;
+}
+
+.fontawesome__trash:hover {
+  color: darken(red, 20%);
+}
+.fontawesome__edit:hover {
+  color: darken($brown, 20%);
+}
+
+.alarm__icon {
+  padding-left: 5px;
 }

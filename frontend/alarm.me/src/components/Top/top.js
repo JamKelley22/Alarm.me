@@ -1,21 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { history, routes } from '../../history.js'
+import * as ACTION from '../../actions/actionTypes.js'
 import Alarm from './alarm.js'
 import { Util } from '../index.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import moment from 'moment';
 import { Query, Mutation } from "react-apollo";
 import to from 'await-to-js';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import update from 'immutability-helper';
 
-import { GET_ALARMS, DELETE_ALARM, CREATE_ALARM, Form } from '../Util'
-import { URI, USER_ID } from '../../constants'
+import { Form } from '../Util'
+import { URI, USER_ID, GET_ALARMS, DELETE_ALARM, CREATE_ALARM, UPDATE_ALARM } from '../../constants'
 
 import './top.scss'
 
-let FormComponents = [
-  {
+let CreateAlarmFormComponents = () =>
+[{
     type: 'input',
     label: 'Title',
     placeholder: 'Class'
@@ -29,36 +33,50 @@ let FormComponents = [
     type: 'dateTime',
     label: 'Date/Time',
     placeholder: 'Click to Enter'
-  }
-]
+  }]
+
+let UpdateAlarmFormComponents = (alarm) =>
+    [{
+      type: 'input',
+      label: 'Title',
+      placeholder: `${alarm.title}`
+    },
+    {
+      type: 'input',
+      label: 'Note',
+      placeholder: `${alarm.note}`
+    },
+    {
+      type: 'dateTime',
+      label: 'Date/Time',
+      placeholder: moment(`${alarm.dateTime}`).format('LLL')
+    }]
+
+let PlaceholderAlarm = {
+  title: "Title",
+  note: "Note",
+  placeholder: moment()
+}
 
 class Top extends React.Component {
   state = {
     alarmsExpanded: false,
     topSpacing: 'space-between',
     alarms: [],
-    showCreateAlarmForm: false
+    showCreateAlarmForm: false,
+    showUpdateAlarmForm: false,
+    currAlarmEditing: PlaceholderAlarm
   }
 
   signOut = () => {
 
   }
 
-  componentDidMount = async() => {
-    console.log("componentDidMount");
-    console.log(this.state);
-    let QUERY = `{
-      alarms(userID: ${USER_ID}) {
-        id
-        userID
-        dateTime
-        title
-        note
-        color
-      }
-    }`
+  componentDidMount = () => {
+    this.doGetAlarms();
+  }
 
-    //console.log(URI);
+  doGetAlarms = async() => {
     let response, data, err;
     [ err, response ] = await to(fetch(URI, {
       method: 'POST',
@@ -66,7 +84,7 @@ class Top extends React.Component {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
-      body: JSON.stringify({query: QUERY})
+      body: JSON.stringify({query: GET_ALARMS})
     }))
     if(err) {
       console.error(err);
@@ -85,17 +103,24 @@ class Top extends React.Component {
 
   openCreateAlarm = () => {
     this.setState({
-      showCreateAlarmForm: true
+      showCreateAlarmForm: true,
+      showUpdateAlarmForm: false
+    })
+  }
+
+  openUpdateAlarm = (alarm) => {
+    this.setState({
+      showCreateAlarmForm: false,
+      showUpdateAlarmForm: true,//only one showing at a time
+      currAlarmEditing: alarm
     })
   }
 
   doCreateAlarm = async(values) => {
-    //console.log(values);
-
-    let dateTimeName = `${FormComponents[2].type}_${FormComponents[2].label}`
-    let titleName = `${FormComponents[0].type}_${FormComponents[0].label}`
-    let noteName = `${FormComponents[1].type}_${FormComponents[1].label}`
-    let colorName //= `${FormComponents[2].type}_${FormComponents[2].label}`
+    let dateTimeName = `${CreateAlarmFormComponents()[2].type}_${CreateAlarmFormComponents()[2].label}`
+    let titleName = `${CreateAlarmFormComponents()[0].type}_${CreateAlarmFormComponents()[0].label}`
+    let noteName = `${CreateAlarmFormComponents()[1].type}_${CreateAlarmFormComponents()[1].label}`
+    let colorName //= `${CreateAlarmFormComponents()[2].type}_${CreateAlarmFormComponents()[2].label}`
 
     let dateTimeIndex = 2
     let titleIndex = 0
@@ -173,6 +198,77 @@ class Top extends React.Component {
     }
   }
 
+  doUpdateAlarm = async(values) => {
+    let UpdateForm = UpdateAlarmFormComponents(this.state.currAlarmEditing);
+
+    let dateTimeName = `${UpdateForm[2].type}_${UpdateForm[2].label}`
+    let titleName = `${UpdateForm[0].type}_${UpdateForm[0].label}`
+    let noteName = `${UpdateForm[1].type}_${UpdateForm[1].label}`
+    let colorName //= `${UpdateForm()[2].type}_${UpdateForm()[2].label}`
+
+    let dateTimeIndex = 2
+    let titleIndex = 0
+    let noteIndex = 1
+    let colorIndex
+
+    let dateTimeObj = values[dateTimeIndex]
+    let titleObj = values[titleIndex]
+    let noteObj = values[noteIndex]
+    let colorObj
+
+
+    let response, data, err;
+    [ err, response ] = await to(fetch(URI, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        query: UPDATE_ALARM,
+        variables: { userID: USER_ID, id: this.state.currAlarmEditing.id, dateTime: `${dateTimeObj[dateTimeName]}`, title: `${titleObj[titleName]}`, note: `${noteObj[noteName]}`, color: `red` },
+      })
+    }))
+    if(err) {
+      console.error(err);
+      return;
+    }
+    [ err, data ] = await to(response.json());
+    //console.log("UPDATED ALARM");
+    //console.log(data);
+    //console.log("START");
+    //console.log(this.state.alarms);
+    if(err) {
+      console.error(err);
+      return;
+    }
+    else {
+      //UPDATE ALARM LOCALLY HERE
+      //TAKING A SHORTCUT FOR NOW AND JUST REFETCHING THE DATA
+
+      this.doGetAlarms();
+
+      /*
+      if(data.data) {
+        console.log("HERE");
+        console.log(this.state.alarms);
+        let alarmIndex = this.state.alarms.findIndex(alarm => data.data.updateAlarm.id === alarm.id);
+        let updatedAlarms;
+
+        updatedAlarms = update(this.state.alarms, {
+          x: {y: {z: {$set: 7}}},
+        });
+
+        console.log(updatedAlarms);
+      }
+      else {
+        alert("Problem deleting alarm");
+      }
+      */
+
+    }
+  }
+
   render () {
     let AlarmList;
     if(this.state.alarmsExpanded && this.props.showAlarms) {
@@ -188,6 +284,7 @@ class Top extends React.Component {
                 color={alarm.color}
                 id={alarm.id}
                 deleteAlarm={() => this.deleteAlarm(alarm.id)}
+                onEditAlarm={() => this.openUpdateAlarm(alarm)}
               />
               <hr/>
             </div>
@@ -203,8 +300,18 @@ class Top extends React.Component {
           type='modalForm'
           onCancel={() => this.setState({showCreateAlarmForm: false})}
           onConfirm={(values) => {this.doCreateAlarm(values); this.setState({showCreateAlarmForm: false})}}
-          formComponents={FormComponents}
+          formComponents={() => CreateAlarmFormComponents()}
         />
+
+        <Form
+          title='Update Alarm'
+          show={this.state.showUpdateAlarmForm}
+          type='modalForm'
+          onCancel={() => this.setState({showUpdateAlarmForm: false})}
+          onConfirm={(values) => {this.doUpdateAlarm(values); this.setState({showUpdateAlarmForm: false})}}
+          formComponents={() => UpdateAlarmFormComponents(this.state.currAlarmEditing)}
+        />
+
         {
           (this.props.showAlarms)
           ?
@@ -276,7 +383,27 @@ class Top extends React.Component {
   }
 }
 
-export default Top;
+function mapStateToProps(state) {
+  return {
+    alarms: state.alarms
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    deleteAlarm: (item) => {
+      dispatch({type: ACTION.DELETE_ALARM, payload: item})
+    },
+    addAlarm: (item) => {
+      dispatch({type: ACTION.ADD_ALARM, payload: item})
+    },
+    updateAlarm: (item) => {
+      dispatch({type: ACTION.UPDATE_ALARM, payload: item})
+    },
+  };
+}
+
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Top))
 
 
 Top.propTypes = {
