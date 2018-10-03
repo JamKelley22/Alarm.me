@@ -32,10 +32,17 @@ $DESTOP_MIN_WIDTH: 1025px;
   max-height: 600px;
   overflow-y: auto;
 }
-
+.appNameAreaContainer {
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
 .appNameArea {
   border-radius: 0px 0px $borderRadius $borderRadius;
   cursor: pointer;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .appNameArea:hover {
   background-color: darken($tan, 5%);

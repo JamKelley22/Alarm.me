@@ -18,76 +18,57 @@ const About = (props) => {
         <div className='about__box__content'>
           <h2>What is it?</h2>
             <p>
-                Fugiat consectetur quibusdam aute incurreret, culpa est fabulas est nostrud
-              tamen o cupidatat cohaerescant si est in dolor quibusdam, cillum se est labore
-              senserit ita ubi quibusdam ubi consequat, ubi incurreret praetermissum se qui
-              nisi admodum pariatur. Iis veniam aliqua ex litteris. Possumus iis ullamco, enim
-              ut fabulas. Consequat magna consequat iudicem, cernantur amet pariatur, nostrud
-              amet anim mentitum veniam, incididunt ex quid, et dolore iudicem relinqueret,
-              qui irure a ipsum, fugiat a laborum ne legam, fugiat officia iis magna tempor.Se
-              cillum instituendarum ad de ne despicationes do officia ne nisi, nescius summis
-              probant. O hic quis eram fugiat, quid efflorescere voluptate nulla consequat. De
-              multos pariatur fidelissimae. Velit iudicem id fidelissimae, admodum tamen illum
-              laboris sint.
+                Alarm.me is a web application that allows users to schedule, update, and delete alarms online.
+              These alarms alert the user at important times during the day.
             </p>
 
           <h2>Who made it?</h2>
             <p>
-              Officia esse ad fabulas eruditionem. Do labore fabulas reprehenderit ita
-              consequat ut eiusmod. Ea dolore quibusdam reprehenderit, arbitror labore ne
-              mentitum praesentibus. Ingeniis aliqua eu offendit despicationes.Noster
-              quibusdam probant, nam cillum adipisicing, doctrina amet nulla ne amet, constias
-              firmissimum ad admodum. Mentitum fugiat arbitror. Expetendis cillum ut excepteur
-              exquisitaque, minim distinguantur laborum ipsum incididunt, ne nisi offendit
-              singulis, laboris consectetur ad ullamco an ullamco non legam voluptate te est a
-              familiaritatem sed id si aliqua anim quis, se nulla appellat exercitation.
-              Officia sint magna est sunt.
+              This application was designed, devloped, tested (limited), and deployed by Jameel Kelley
+            </p>
+            <p>
+                Jameel is a Junior at ISU majoring in Software Engineering. He spent the summer of 2018 working at <a href='http://www.designmillinc.com/' target='_blank'>Design Mill Inc</a> developing on VR platforms.
+              His interests lie in Web & Game Development
             </p>
 
           <h2>Why?</h2>
             <p>
-              Ita id distinguantur nam a noster familiaritatem, consequat id fabulas, fabulas
-              tamen minim ubi esse. Malis id vidisse. Nisi quamquam aut quae minim, vidisse
-              nisi non probant tractavissent, an occaecat domesticarum, esse fabulas ab anim
-              enim in labore pariatur arbitror id a ab irure consequat, et admodum aut
-              laborum, eiusmod ne cillum expetendis.Proident nam appellat te doctrina et
-              tamen. Noster se laborum est dolor expetendis de officia. Appellat
-              concursionibus hic mandaremus ne nam eiusmod distinguantur, se aut nulla fore
-              cillum ea sed quem nostrud tractavissent sed e laborum exquisitaque, ne officia
-              imitarentur se nostrud dolore doctrina incididunt ne possumus ita incurreret.
+              The core reason for this projects creation is the fullfillment of the coding challange put forth by <a href='https://www.criticallabs.io/' target='_blank'>Critical Labs. </a>
+            On 9/25/18 I was given a requirements document that asked for fullfillment of a few goals. The goals of this change is to deliver a web application that allows for scheduling
+            and alarm notifications to ensure that Johnny is able to wake up on time. The core of the document given is as follows...
             </p>
+            <p>
+              Johnny keeps oversleeping and missing class! He needs your help to build an alarm clock that can keep track of his schedule and make sure he's up in time. He’s heard of this cool Javascript framework called ReactJS and asked you to build a web frontend using it.
 
+              He also heard that Javascript can be used for the backend, too, and was thinking that you could develop a simple API to manage his schedule using NodeJS and ExpressJS. Johnny’s schedule is as follows
+              <br/>
+              <br/>Monday - 7am
+              <br/>Tuesday - 9am
+              <br/>Wednesday - 9am
+              <br/>Thursday - 7:45am
+              <br/>Friday - 8:15am
+              <br/>Saturday - Sleep in! (no alarm)
+              <br/>Sunday - Sleep in! (no alarm)
+
+            </p>
           <h2>Docs?</h2>
             <p>
-              Possumus tempor expetendis, id eram consectetur. Dolor laboris e minim dolore,
-              nam labore doctrina consequat e et culpa culpa se offendit ita cupidatat velit a
-              officia coniunctione. Excepteur eram expetendis commodo.Excepteur aute te
-              possumus coniunctione, aute illustriora quibusdam anim quamquam. Commodo sed
-              amet pariatur, o elit fidelissimae. Quae iudicem ingeniis, quid probant an quid
-              malis. Fabulas an sint do aut legam legam eu officia nam tempor instituendarum
-              quibusdam tempor cernantur ad aut cillum voluptate proident.
+              Documentation for this project can be found on the <a href='https://github.com/JamKelley22/Critical-Labs-Alarm-Clock-Challenge/tree/master/docs' target='_blank'>GitHub page for Alarm.me</a>
             </p>
 
           <h2>Feedback?</h2>
             <p>
-              Ut quem summis eram litteris do excepteur ipsum culpa litteris malis. Ex illum
-              cohaerescant id an duis irure ab eiusmod. Ut malis magna iis excepteur, quo quae
-              graviterque do sint cupidatat non incurreret est offendit de occaecat quo de in
-              sempiternum, de eiusmod cohaerescant, non aliqua velit minim cupidatat si hic
-              tamen sempiternum.Eiusmod illum legam se quid si occaecat hic probant, export
-              qui officia ita enim se sunt quibusdam cupidatat. Ex de quem eiusmod, arbitror
-              ita quem doctrina. Do quem de summis, amet arbitror commodo aut possumus dolor
-              in ullamco coniunctione, admodum ne appellat a non minim praesentibus, excepteur
-              do pariatur, aut e amet singulis et quem commodo praesentibus.
+              For Issues go <a href='https://github.com/JamKelley22/Critical-Labs-Alarm-Clock-Challenge/issues' target='_blank'>here</a>
+            </p>
+            <p>
+              To send me a message go <a href='https://www.jamkelley.com/contact' target='_blank'>here</a>
             </p>
 
           <h2>Links?</h2>
             <p>
-              Ita nam comprehenderit eu o an tamen ingeniis, a consequat transferrem, minim
-              incurreret praesentibus. Pariatur summis appellat. Proident in fugiat cupidatat
-              a aliqua imitarentur incurreret quem fabulas.In multos comprehenderit, ea ex
-              firmissimum. Si aut distinguantur. Aute ita quibusdam ab sunt, mentitum velit
-              quorum an aute.
+              <br/><a href='https://github.com/JamKelley22' target='_blank'>GitHub</a>
+              <br/><a href='https://www.linkedin.com/in/jamkelley22/' target='_blank'>LinkedIn</a>
+              <br/><a href='https://www.jamkelley.com/' target='_blank'>Website</a> (Still under Devlopment)
             </p>
 
         </div>

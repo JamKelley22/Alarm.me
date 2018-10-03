@@ -53,7 +53,7 @@ class App extends Component {
   }
 
   checkAlarms = async() => {
-    console.log("checkAlarms");
+    //console.log("checkAlarms");
     await this.updateAlarmListFromServer();
     this.state.alarms.forEach((alarm, i) => {
       if(isSameMomentAsNow(alarm.dateTime)) {
@@ -100,7 +100,7 @@ class App extends Component {
     //May update to creating timeouts for every alarm
     this.startIntervalAtTopOfMinute();
     this.updateAlarmListFromServer();
-    setInterval(this.checkAlarms,ONE_SECOND * 5)
+    //setInterval(this.checkAlarms,ONE_SECOND * 5)
   }
 
   componetWillUnmount = () => {

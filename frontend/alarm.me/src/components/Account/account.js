@@ -4,6 +4,29 @@ import { Top, Util } from '../index.js'
 
 import './account.scss'
 
+let AccountFormComponents = (user) =>
+[
+{
+  type: 'input',
+  label: 'Change Name',
+  placeholder: ''
+},
+{
+  type: 'input',
+  label: 'Change Email',
+  placeholder: ''
+},
+{
+  type: 'password',
+  label: 'Change Password',
+  placeholder: ''
+},
+{
+  type: 'password',
+  label: 'Confirm Password',
+  placeholder: ''
+}]
+
 class Account extends React.Component {
   render () {
     return (
@@ -21,28 +44,7 @@ class Account extends React.Component {
               cancelText='Cancel'
               onConfirm={(res) => {console.log(res)}}
               onCancel={() => {console.log("Canceled")}}
-              formComponents={[
-                {
-                  type: 'input',
-                  label: 'Title',
-                  placeholder: 'Class'
-                },
-                {
-                  type: 'input',
-                  label: 'Note',
-                  placeholder: '8 AM'
-                },
-                {
-                  type: 'password',
-                  label: 'Password',
-                  placeholder: 'Lary123'
-                },
-                {
-                  type: 'password',
-                  label: 'Confirm Password',
-                  placeholder: 'Lary123'
-                }
-              ]}
+              formComponents={AccountFormComponents}
             />
           </div>
         </div>

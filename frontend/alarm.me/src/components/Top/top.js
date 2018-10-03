@@ -234,10 +234,6 @@ class Top extends React.Component {
       return;
     }
     [ err, data ] = await to(response.json());
-    //console.log("UPDATED ALARM");
-    //console.log(data);
-    //console.log("START");
-    //console.log(this.state.alarms);
     if(err) {
       console.error(err);
       return;
@@ -345,7 +341,7 @@ class Top extends React.Component {
         }
 
 
-        <div>
+        <div className='appNameAreaContainer'>
           <div className='area appNameArea' onClick={() => history.push(routes._LANDING)}>
             <span className='appName'>Alarm.Me</span>
           </div>
@@ -365,6 +361,7 @@ class Top extends React.Component {
               About
             </Link>
 
+            {/* ======Not Yet Implimented======
             <Link
               to={routes._ACCOUNT}
               className='navagationLink'>
@@ -375,7 +372,7 @@ class Top extends React.Component {
               name='Sign Out'
               size='small'
               onClick={() => this.signOut()}
-            />
+            />*/}
           </div>
         </div>
       </div>
