@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { Util } from '../index.js'
 import { history, routes } from '../../history.js'
+import Attribution from './attribution.js'
 
 import './about.scss'
 
@@ -64,12 +65,20 @@ const About = (props) => {
               To send me a message go <a href='https://www.jamkelley.com/contact' target='_blank'>here</a>
             </p>
 
-          <h2>Links?</h2>
+          <h2>Links</h2>
             <p>
               <br/><a href='https://github.com/JamKelley22' target='_blank'>GitHub</a>
               <br/><a href='https://www.linkedin.com/in/jamkelley22/' target='_blank'>LinkedIn</a>
               <br/><a href='https://www.jamkelley.com/' target='_blank'>Website</a> (Still under Devlopment)
             </p>
+
+          <h2>Attribution</h2>
+            <Attribution
+              author='Daniel Simion'
+              title='Old School Bell'
+              license='Attribution 3.0'
+              uri='http://soundbible.com/2185-Old-School-Bell.html'
+            />
 
         </div>
       </div>

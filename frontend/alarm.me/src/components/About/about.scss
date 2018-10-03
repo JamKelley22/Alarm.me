@@ -78,3 +78,45 @@
 @include desktop {
 
 }
+
+
+/*Attribution*/
+.attribution {
+  display: flex;
+
+}
+.title {
+  font-weight: bold;
+}
+.author {
+  font-size: 1em;
+}
+.license {
+
+}
+.copyright {
+
+}
+.disclaimer {
+
+}
+.uri {
+
+}
+.attribution__left {
+  display: flex;
+  flex-direction: column;
+}
+.attribution__right {
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+  font-style: oblique;
+  font-size: .8em;
+}
+a:hover {
+  text-decoration: underline;
+}

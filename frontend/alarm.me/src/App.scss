@@ -10,23 +10,25 @@
   flex-direction: column;
   position: relative;
 
-  /*
+
   @include mobile {
-    background-color: green;
+    /*background-color: green;*/
+    overflow: auto;
   }
 
   @include tablet {
-    background-color: red;
+    /*background-color: red;*/
+    overflow: auto;
   }
 
   @include laptop {
-    background-color: blue;
+    /*background-color: blue;*/
   }
 
   @include desktop {
-    background-color: $blue;
+    /*background-color: $blue;*/
   }
-  */
+
 }
 
 .App--flash {

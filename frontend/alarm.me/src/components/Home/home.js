@@ -14,16 +14,25 @@ let TIME_INTERVAL = ONE_SECOND;
 
 class Home extends React.Component {
   state = {
-    time: Date.now()
+    time: Date.now(),
+    intervalID: null
   }
 
   componentDidMount() {
-    setInterval(() => {
+    let interval = setInterval(() => {
       this.setState({
         time: Date.now()
       })
     },TIME_INTERVAL
     );
+
+    this.setState({
+      intervalID: interval
+    })
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.intervalID);
   }
 
   render () {
