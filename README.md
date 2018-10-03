@@ -5,7 +5,7 @@
 - [Backend](backend/README.md)
 
 ### Setup 
-1. `git clone https://github.com/JamKelley22/Critical-Labs-Alarm-Clock-Challenge`
+1. `git clone https://github.com/JamKelley22/Alarm.me`
 2. `cd frontend/alarm.me/`
 3. `yarn install`
 4. `yarn start`
