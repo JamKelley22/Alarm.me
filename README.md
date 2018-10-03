@@ -6,7 +6,7 @@
 
 ### Setup 
 1. `git clone https://github.com/JamKelley22/Alarm.me`
-2. `cd frontend/alarm.me/`
+2. `cd Alarm.me/frontend/alarm.me/`
 3. `yarn install`
 4. `yarn add moment` (It seems moment didn't get added to the package.json)
 4. `yarn start`
