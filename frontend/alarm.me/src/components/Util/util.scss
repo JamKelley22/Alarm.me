@@ -154,3 +154,10 @@ $inputHeight: 30px;
 .component__input--invalid[type=text] {
   color: red;
 }
+
+.form__note {
+  font-size: 20px;
+  font-weight: bold;
+  align-self: center;
+  color: $brown;
+}

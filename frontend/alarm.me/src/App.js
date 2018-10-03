@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom'
 import to from 'await-to-js';
 import moment from 'moment'
+import {Howl, Howler} from 'howler';
 
 import { Account, Home, Landing, About, Login, Signup, Error404 } from './components'
 import * as routes from './constants/routes.js'
 import { history } from './history';
+import { Util } from './components'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -16,6 +18,9 @@ import { URI, USER_ID, GET_ALARMS } from './constants'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 //import * as stuffActions from './actions/stuffActions.js';
+
+//Audio
+import Bell from './Audio/bell.wav'
 
 import './App.scss';
 
@@ -31,11 +36,22 @@ const isSameMomentAsNow = (dateTime) => {
   return moment(moment().format('LLLL')).isSame(moment(dateTime).format('LLLL'));
 }
 
+let AlarmFormComponents = () =>
+[]
+
+const EmptyAlarm = {
+  title: "Alarm!",
+  note: "Note"
+}
+
 class App extends Component {
   state = {
     alarms: [],
     checkAlarmInterval: null,
-    appFlashOn: false
+    appFlashOn: false,
+    showAlarm: false,
+    playingAlarm: EmptyAlarm,
+    howl: null
   }
 
   startIntervalAtTopOfMinute = () => {
@@ -63,11 +79,23 @@ class App extends Component {
   }
 
   playAlarm = (alarm) => {
+    //console.log("ALARM!!!");
+    var sound = new Howl({
+      src: [Bell],
+      loop: true
+    });
+
+    sound.play();
     this.setState({
-      appFlashOn: !this.state.appFlashOn
-    }, () => {
-      setTimeout(this.playAlarm,ONE_SECOND * 2);
+      playAlarm: alarm,
+      showAlarm: true,
+      playingAlarm: alarm,
+      howl: sound
     })
+  }
+
+  stopAlarm = () => {
+    this.state.howl.stop();
   }
 
   updateAlarmListFromServer = async() => {
@@ -105,6 +133,7 @@ class App extends Component {
 
   componetWillUnmount = () => {
     clearInterval(this.state.checkAlarmInterval);
+    this.state.howl.stop();
   }
 
   pushHistory = () => {
@@ -118,6 +147,17 @@ class App extends Component {
   render() {
     return (
       <div className={`App ${this.state.appFlashOn && 'appFlashOn'}`}>
+        <Util.Form
+          title={this.state.playingAlarm.title}
+          note={this.state.playingAlarm.note}
+          show={this.state.showAlarm}
+          confirmText='Ok'
+          cancelText='Dismiss'
+          type='modalForm'
+          onCancel={() => {this.setState({showAlarm: false}); this.stopAlarm()}}
+          onConfirm={(values) => {this.setState({showAlarm: false}); this.stopAlarm()}}
+          formComponents={() => AlarmFormComponents()}
+        />
         <Switch>
           <Route exact path={routes._LANDING} component={Landing}/>
           <Route exact path={routes._HOME} component={Home}/>

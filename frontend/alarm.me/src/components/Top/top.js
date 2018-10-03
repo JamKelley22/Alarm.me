@@ -95,7 +95,7 @@ class Top extends React.Component {
       console.error(err);
       return;
     }
-    console.log(data.data.alarms);
+    //console.log(data.data.alarms);
     this.setState({
       alarms: data.data.alarms
     })
@@ -156,7 +156,7 @@ class Top extends React.Component {
       return;
     }
     else {
-      console.log(data.data.createAlarm);
+      //console.log(data.data.createAlarm);
       this.setState({
         alarms: [...this.state.alarms, data.data.createAlarm]
       })

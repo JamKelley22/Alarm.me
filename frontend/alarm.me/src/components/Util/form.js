@@ -171,14 +171,21 @@ class Form extends React.Component {
               {FormIcon}
             </div>
 
-            <div className='form__top__right'>
-              {componentList}
-              {
-                this.props.johnny
-                &&
-                <Button name='Johnny?' size='small' onClick={(e) => this.handleSubmit(e,this.props.onJohnny)}/>
-              }
-            </div>
+            {
+              this.props.note
+              ?
+              <div className='form__note'>{this.props.note}</div>
+              :
+              <div className='form__top__right'>
+                {componentList}
+                {
+                  this.props.johnny
+                  &&
+                  <Button name='Johnny?' size='small' onClick={(e) => this.handleSubmit(e,this.props.onJohnny)}/>
+                }
+              </div>
+            }
+
           </div>
 
           <div className='form__bottom'>
