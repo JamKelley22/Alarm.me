@@ -173,6 +173,11 @@ class Form extends React.Component {
 
             <div className='form__top__right'>
               {componentList}
+              {
+                this.props.johnny
+                &&
+                <Button name='Johnny?' size='small' onClick={(e) => this.handleSubmit(e,this.props.onJohnny)}/>
+              }
             </div>
           </div>
 

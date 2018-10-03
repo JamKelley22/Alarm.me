@@ -1,4 +1,4 @@
-# Alarm.me
+# Alarm.me Frontend
 
 ### TODO:
 - [x] Create React App
@@ -7,6 +7,7 @@
 - [x] Routing
 - [x] GraphQL (Apollo)
 - [ ] Auth
-- [ ] OnTimerEnd (Alarm, Youtube video)
+- [ ] OnTimerEnd (Alarm)
+- [ ] Finish Implementing Redux
 
 [Create-React-App Guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).

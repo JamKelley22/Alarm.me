@@ -21,8 +21,10 @@
   margin-bottom: 50px;
 }
 
-.fontawesome__feather {
+.fontawesome__feather--rotate {
   color: $brown;
+
+  -webkit-animation: rotation 5s infinite linear;
 
   -moz-transform: scale(-1, 1);
   -webkit-transform: scale(-1, 1);
@@ -148,4 +150,13 @@
     left: 45%;
     bottom: -15%;
   }
+}
+
+@-webkit-keyframes rotation {
+		from {
+				-webkit-transform: rotateY(0deg);
+		}
+		to {
+				-webkit-transform: rotateY(359deg);
+		}
 }

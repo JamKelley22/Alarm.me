@@ -83,11 +83,12 @@ var schema = buildSchema(`
 
 
 var deleteAlarm = async(args) => {
+	console.log("DELETE_ALARM");
 	let alarmDataSQL = [], err = null, sqlQuery, trash;
 
 	sqlQuery = `SELECT * FROM Alarm a WHERE (a.userID = ${args.userID}) AND (a.id = ${args.id})`;
 	[err, alarmDataSQL] = await to(database.query(sqlQuery));
-	console.log("Test1");
+	//console.log("Test1");
 	if(err) return err;
 
 	sqlQuery = `DELETE FROM Alarm WHERE (userID = ${args.userID}) AND (id = ${args.id})`;
@@ -99,6 +100,7 @@ var deleteAlarm = async(args) => {
 }
 
 var getAlarm = async(args) => {
+	console.log("GET_ALARM");
 	let alarmDataSQL = [], err = null;
 	//===args.userID && args.id must be specified to get here===
 	let sqlQuery = `SELECT * FROM Alarm a WHERE (a.userID = ${args.userID}) AND (a.id = ${args.id})`;
@@ -108,6 +110,7 @@ var getAlarm = async(args) => {
 }
 
 var getAlarms = async(args) => {
+	console.log("GET_ALARMS");
 	let alarmDataSQL = [], err = null;
 	//===args.userID must be specified to get here===
 	let sqlQuery = `SELECT * FROM Alarm a WHERE a.userID = ${args.userID}`;
@@ -176,6 +179,7 @@ var createAlarm = async(args) => {
 }
 
 var updateAlarm = async(args) => {
+	console.log("UPDATE_ALARM");
 	let alarmDataSQL = [], err = null, sqlQuery, trash;
 
 	//Get Alarm to Update

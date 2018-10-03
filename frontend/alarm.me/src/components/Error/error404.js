@@ -19,7 +19,7 @@ class Error404 extends React.Component {
 
         <div className='error404__row1 error404__row' >
           <FontAwesomeIcon
-            className='fontawesome__feather'
+            className='fontawesome__feather fontawesome__feather--rotate'
             icon='feather-alt'
           />
         </div>
@@ -30,7 +30,7 @@ class Error404 extends React.Component {
 
         <div className='error404__row3 error404__row'>
           <Util.Button
-            name='Back to Safety'
+            name='To Safety'
             size='large'
             onClick={() => history.push(routes._LANDING)}
           />

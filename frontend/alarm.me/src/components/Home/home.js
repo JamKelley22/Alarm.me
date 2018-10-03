@@ -5,6 +5,8 @@ import { Top } from '../index.js'
 import User from './user.js'
 import SecondsBar from './secondsBar.js'
 
+import { USER_ID, getUsername } from '../../constants/'
+
 import './home.scss'
 
 const ONE_SECOND = 1000;
@@ -32,7 +34,9 @@ class Home extends React.Component {
         />
 
         <div className='home'>
-          <User/>
+          <User
+            username={getUsername()}
+          />
           <div id='time'>
             {moment(this.state.time).format('LT')}
             <div id='secondsBarWrapper'>

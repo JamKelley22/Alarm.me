@@ -3,6 +3,8 @@ import React from 'react'
 import { Util } from '../index.js'
 import { history, routes } from '../../history.js'
 
+import { setUserID, JohnnyUserID } from '../../constants/'
+
 import './login.scss'
 
 let LoginFormComponents = () =>
@@ -22,6 +24,11 @@ let LoginFormComponents = () =>
     placeholder: 'Lary123'
   }]
 
+const loginJohnny = () => {
+  setUserID(JohnnyUserID)
+  history.push(routes._HOME)
+}
+
 const Login = (props) => {
   return (
     <div className='login'>
@@ -34,6 +41,8 @@ const Login = (props) => {
           onConfirm={(res) => {console.log(res)}}
           onCancel={() => {history.push(routes._LANDING)}}
           formComponents={LoginFormComponents}
+          johnny={true}
+          onJohnny={() => loginJohnny()}
         />
       </div>
     </div>
