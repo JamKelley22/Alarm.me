@@ -10,6 +10,7 @@ $DESTOP_MIN_WIDTH: 1025px;
   min-width: $DESTOP_MIN_WIDTH;
   position: absolute;
   width: 100%;
+  z-index: 2;
 }
 
 .area {
@@ -89,6 +90,9 @@ hr {
   .fontawesome {
     color: darken($brown, 20%);
   }
+}
+.fontawesome__trash:hover {
+  color: darken(red, 20%);
 }
 .plusCircle {
   position: relative;

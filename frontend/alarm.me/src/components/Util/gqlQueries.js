@@ -1,8 +1,8 @@
-import { gql } from 'apollo-boost'
 
-export const GET_ALARMS = gql`
+
+export const GET_ALARMS = `
   {
-    alarms {
+    alarms(userID: 1) {
       id
       userID
       dateTime
@@ -13,15 +13,15 @@ export const GET_ALARMS = gql`
   }
 `;
 
-export const DELETE_ALARM = gql`
-  mutation deleteOneAlarm($id: Int!) {
-    deleteAlarm(id: $id) {
+export const DELETE_ALARM = `
+  mutation deleteOneAlarm($id: Int!, $userID: Int!) {
+    deleteAlarm(id: $id, userID: $userID) {
       id
     }
   }
 `;
 
-export const CREATE_ALARM = gql`
+export const CREATE_ALARM = `
   mutation createAlarm($userID: Int!, $dateTime: String!, $title: String!, $note: String!, $color: String! ) {
     createAlarm(userID: $userID, dateTime: $dateTime, title: $title, note: $note, color: $color) {
       id

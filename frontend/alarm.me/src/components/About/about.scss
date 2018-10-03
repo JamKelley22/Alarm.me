@@ -53,3 +53,28 @@
 .fontawesome__github {
   font-size: 18px;
 }
+
+@include mobile {
+  .about__box {
+    width: 90%;
+    -webkit-overflow-scrolling: touch;
+  }
+  .about__box__icons__container {
+    width: 90%;
+  }
+  .fontawesome__github {
+    font-size: 14px;
+  }
+}
+
+@include tablet {
+
+}
+
+@include laptop {
+
+}
+
+@include desktop {
+
+}

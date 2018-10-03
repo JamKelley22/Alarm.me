@@ -13,7 +13,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faPlusCircle, faTrash, faFeatherAlt, faUser, faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
-import { URI } from './constants/endpoints.js'
+import { URI, USER_ID} from './constants'
 
 import './App.scss';
 
@@ -30,7 +30,7 @@ class App extends Component {
 
   componentDidMount = async() => {
     let QUERY = `{
-      alarms {
+      alarms(userID: ${USER_ID}) {
         id
         userID
         dateTime
@@ -40,7 +40,7 @@ class App extends Component {
       }
     }`
 
-    console.log(URI);
+    //console.log(URI);
     let response, data, err;
     [ err, response ] = await to(fetch(URI, {
       method: 'POST',
@@ -59,7 +59,7 @@ class App extends Component {
       console.error(err);
       return;
     }
-    console.log(data);
+    //console.log(data);
   }
 
   pushHistory = () => {

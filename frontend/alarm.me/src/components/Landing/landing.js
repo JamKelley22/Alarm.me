@@ -13,9 +13,9 @@ class Landing extends React.Component {
   render () {
     return (
       <div className='landing'>
-        <img src={LeftSVG} className='svg leftSVG'/>
-        <img src={RightSVG} className='svg rightSVG'/>
-        <div className='landing__row1 landing__row'>
+        <img src={LeftSVG} className='svg leftSVG' alt='Left Backround SVG'/>
+        <img src={RightSVG} className='svg rightSVG' alt='Right Backround SVG'/>
+        <div className='landing__row1 landing__row' >
           <FontAwesomeIcon
             className='fontawesome__feather'
             icon='feather-alt'

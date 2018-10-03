@@ -3,18 +3,6 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { Mutation } from "react-apollo";
-
-import { GET_ALARMS, DELETE_ALARM, CREATE_ALARM} from '../Util/gqlQueries.js'
-
-const _updateStoreAfterDelete = (store, alarms, alarmId) => {
-  const data = store.readQuery({ query: GET_ALARMS })
-  let alarmIndex = data.alarms.findIndex(alarm => alarm.id === alarmId);
-  let newAlarmData = data.alarms.splice(alarmIndex,1);
-  data.alarmData = newAlarmData;
-  store.writeQuery({ query: GET_ALARMS, data })
-}
-
 const Alarm = (props) => {
   return (
     <div className='alarm'>
@@ -33,25 +21,13 @@ const Alarm = (props) => {
         </div>
 
         <div className='alarm__delete'>
-          <Mutation
-            mutation={DELETE_ALARM}
-            update={(store, { data: { alarms } }) =>
-              _updateStoreAfterDelete(store, alarms, props.id)
-            }
-          >
-            {(deleteAlarm, { data }) => (
-              <div>
-                <FontAwesomeIcon
-                className='fontawesome'
-                icon='trash'
-                onClick={() => {
-                  deleteAlarm({ variables: { id: props.id } });
-                }}
-                />
-              </div>
-            )}
-          </Mutation>
-
+          <div>
+            <FontAwesomeIcon
+            className='fontawesome__trash'
+            icon='trash'
+            onClick={props.deleteAlarm}
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -61,19 +37,15 @@ const Alarm = (props) => {
 export default Alarm;
 
 Alarm.propTypes = {
-  name: PropTypes.string
+  title: PropTypes.string,
+  note: PropTypes.string,
+  dateTime: PropTypes.string,
+  color: PropTypes.string,
 };
 
 Alarm.defaultProps = {
-  name: 'Click Me'
+  title: 'Title',
+  note: 'Note',
+  dateTime: 'Today',
+  color: 'red'
 };
-
-/*
-title={alarm.title}
-note={alarm.note}
-dateTime={alarm.dateTime}
-color={alarm.color}
-
-
-
-*/

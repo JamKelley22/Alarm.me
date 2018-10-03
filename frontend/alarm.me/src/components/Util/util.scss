@@ -69,8 +69,25 @@ $inputHeight: 30px;
   border-radius: 0% $formBorderRadius 0% $formBorderRadius;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
 
-  min-width: 500px;
-  overflow: hidden;
+  min-width: 550px;
+  overflow: visible;
+}
+.form__container--hidden {
+  display: none;
+}
+.singleForm {
+
+}
+.modalForm {
+  position: fixed;
+  z-index: 10;
+  width: 80%;
+  height: 80%;
+  box-shadow: 0px 0px 1000px black;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 .form {
   height: 100%;
@@ -133,4 +150,7 @@ $inputHeight: 30px;
 .component__input[type=text], .component__input[type=password], .component__datetime input[type=text] {
   color: $brown;
   padding-left: 10px;
+}
+.component__input--invalid[type=text] {
+  color: red;
 }

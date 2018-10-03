@@ -47,7 +47,7 @@ class Home extends React.Component {
           </div>
 
           <div id='date'>
-            {moment(this.state.time).format('MMMM Do')}
+            {moment(this.state.time).format('MMMM D, YYYY')}
           </div>
         </div>
       </React.Fragment>
