@@ -7,13 +7,13 @@
 - [x] Routing
 - [x] GraphQL (Apollo)
 - [ ] Auth
-- [ ] OnTimerEnd (Alarm)
+- [x] OnTimerEnd (Alarm)
 - [ ] Custom Alarm Sounds
 - [ ] Finish Implementing Redux
 - [ ] Repeating Alarms
 - [ ] Alarm Delete Confirmation
 - [ ] Set Placeholder date when updating alarm
 - [ ] Make Form Component either Controlled or Uncontrolled
-- [ ] Make Sure all timeouts and intervals are cleared
+- [x] Make Sure all timeouts and intervals are cleared
 
 [Create-React-App Guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
