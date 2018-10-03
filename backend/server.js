@@ -81,26 +81,6 @@ var schema = buildSchema(`
     }
 `);
 
-let alarmData = [
-  {
-    id: 1,
-    userID: 1,
-    dateTime: "2010-10-20 4:30",
-    title: "Wake Up",
-    note: "Go to class!",
-    color: "green"
-  },
-  {
-    id: 2,
-    userID: 1,
-    dateTime: "2010-10-20 4:30",
-    title: "Wake Up",
-    note: "Go to class!",
-    color: "blue"
-  }
-]
-let idCount = alarmData.length;
-
 
 var deleteAlarm = async(args) => {
 	let alarmDataSQL = [], err = null, sqlQuery, trash;
@@ -112,7 +92,8 @@ var deleteAlarm = async(args) => {
 
 	sqlQuery = `DELETE FROM Alarm WHERE (userID = ${args.userID}) AND (id = ${args.id})`;
 	[err, trash] = await to(database.query(sqlQuery));
-	console.log("Test2");
+	//console.log("Test2");
+	//console.log(alarmDataSQL[0]);
 	if(err) return err;
 	return alarmDataSQL[0];
 }
@@ -136,29 +117,62 @@ var getAlarms = async(args) => {
 }
 
 var createAlarm = async(args) => {
+	console.log("CREATE_ALARM");
 	let a = {
-		id: idCount++,
 		userID: args.userID,
 		dateTime: args.dateTime,
 		title: args.title,
 		note: args.note,
 		color: args.color
 	};
+	//console.log(a);
 
-	let alarmDataSQL = [], err = null, sqlQuery;
+	let alarmDataSQL = [], err = null, sqlQuery, trash, newId;
 
-	//===args.userID must be specified to get here===
-	//===ORDER: id,userID,dateTime,title,note,color===
-	sqlQuery = `INSERT INTO Alarm VALUES (${a.id}, ${a.userID}, '${a.dateTime}', '${a.title}', '${a.note}', '${a.color}')`;
+	sqlQuery = `INSERT INTO Alarm (userID, dateTime, title, note, color) VALUES (${a.userID}, '${a.dateTime}', '${a.title}', '${a.note}', '${a.color}')`;
 	[err, alarmDataSQL] = await to(database.query(sqlQuery));
 	if(err) return err;
 
-	//Then get that alarm
-	sqlQuery = `SELECT * FROM Alarm a WHERE a.id = ${a.id}`;
+	sqlQuery = `SELECT LAST_INSERT_ID() as id`
 	[err, alarmDataSQL] = await to(database.query(sqlQuery));
-	console.log(alarmDataSQL);
 	if(err) return err;
-	return alarmDataSQL[0];
+
+	sqlQuery = `SELECT * FROM Alarm a WHERE (a.id = ${alarmDataSQL.insertId})`;
+	[err, alarmDataSQL] = await to(database.query(sqlQuery));
+	if(err) return err;
+	console.log(alarmDataSQL[0]);
+	return(alarmDataSQL[0]);
+
+	/*
+	let newAlarm = database.query(sqlQuery)
+	.then(rows => {
+		sqlQuery = `SELECT LAST_INSERT_ID() as id`
+		database.query(sqlQuery)
+		.then(rows2 => {
+			newId = rows2[0].id;
+
+			//Then get that alarm
+			sqlQuery = `SELECT * FROM Alarm a WHERE (a.id = ${newId})`;
+			database.query(sqlQuery)
+			.then(row3 => {
+				console.log(JSON.stringify(row3[0]));
+				//============================================================
+			})
+			.catch(err => {
+				console.log(err);
+				return err;
+			})
+		})
+		.catch(err => {
+			console.log(err);
+			return err;
+		})
+	})
+	.catch(err => {
+		console.log(err);
+		return err;
+	})
+	*/
 }
 
 var updateAlarm = async(args) => {
@@ -252,4 +266,4 @@ app.get('/', (req, res) => {
 });
 
 const PORT = 4000;
-app.listen(PORT, () => console.log('Express GraphQL Server Now Running On localhost:PORT/graphql'));
+app.listen(PORT, () => console.log(`Server Running on /${PORT}/graphql`));
