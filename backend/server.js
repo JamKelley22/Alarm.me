@@ -39,22 +39,6 @@ const config = {
 
 let database = new Database(config);
 
-var cleanup = require('./cleanup').Cleanup(myCleanup);
-
-// Prevents the program from closing instantly
-process.stdin.resume();
-
-function myCleanup() {
-	console.log('Cleaning Up...');
-	//console.log('Closing MySQL Connection');
-	//connection.end();
-};
-
-function error() {
-  console.log('error');
-  var x = require('');
-};
-
 // GraphQL schema
 var schema = buildSchema(`
     type Query {
