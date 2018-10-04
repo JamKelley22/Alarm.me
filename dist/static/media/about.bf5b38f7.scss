@@ -1,0 +1,122 @@
+@import '../../colors';
+@import '../../mediaQuery';
+
+.about {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.about__box {
+  width: 60%;
+  height: 100%;
+  background-color: $tan;
+  overflow-y: auto;
+  box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.5), -5px 0px 10px rgba(0, 0, 0, 0.5);
+}
+.about__box__title {
+  text-align: center;
+  font-size: 3em;
+  font-weight: bold;
+  color: $brown;
+  padding-top: 20px;
+}
+.about__box__content {
+  text-align: left;
+  font-size: 1.2em;
+  color: $brown;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-indent: 2em;
+
+  h2 {
+    text-indent: 0em;
+  }
+}
+.about__box__icons__container {
+  overflow: hidden;
+  width: 60%;
+  box-shadow: 5px 0px 10px rgba(0, 0, 0, 0.5), -5px 0px 10px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+.about__box__icons {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.8em;
+  background-color: $tan;
+  width: 100%;
+}
+.about__box__icon {
+  padding: 10px;
+}
+.fontawesome__github {
+  font-size: 18px;
+}
+
+@include mobile {
+  .about__box {
+    width: 90%;
+    -webkit-overflow-scrolling: touch;
+  }
+  .about__box__icons__container {
+    width: 90%;
+  }
+  .fontawesome__github {
+    font-size: 14px;
+  }
+}
+
+@include tablet {
+
+}
+
+@include laptop {
+
+}
+
+@include desktop {
+
+}
+
+
+/*Attribution*/
+.attribution {
+  display: flex;
+
+}
+.title {
+  font-weight: bold;
+}
+.author {
+  font-size: 1em;
+}
+.license {
+
+}
+.copyright {
+
+}
+.disclaimer {
+
+}
+.uri {
+
+}
+.attribution__left {
+  display: flex;
+  flex-direction: column;
+}
+.attribution__right {
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+  font-style: oblique;
+  font-size: .8em;
+}
+a:hover {
+  text-decoration: underline;
+}

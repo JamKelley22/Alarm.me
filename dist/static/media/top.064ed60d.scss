@@ -1,0 +1,167 @@
+@import '../../colors';
+
+$borderRadius: 30px;
+
+$DESTOP_MIN_WIDTH: 1025px;
+
+.topLine {
+  display: flex;
+  justify-content: space-between;
+  min-width: $DESTOP_MIN_WIDTH;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
+
+.area {
+  background-color: $tan;
+  padding: 10px;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+.alarmArea {
+  border-radius: 0px 0px $borderRadius 0px;
+  min-width: 390px;
+  max-height: 100px;
+  padding: 5px 5px 0px 0px;
+}
+.alarmArea--expanded {
+  max-height: none;
+}
+.allAlarms {
+  max-height: 600px;
+  overflow-y: auto;
+}
+.appNameAreaContainer {
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+.appNameArea {
+  border-radius: 0px 0px $borderRadius $borderRadius;
+  cursor: pointer;
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.appNameArea:hover {
+  background-color: darken($tan, 5%);
+}
+.appName {
+  color: $brown;
+  font-weight: bold;
+  font-size: 40px;
+  padding: 10px;
+}
+
+.navagationArea {
+  border-radius: 0px 0px 0px $borderRadius;
+}
+.navagationLink {
+  text-decoration: none;
+  color: $brown;
+  font-weight: bold;
+  margin: 5px 15px 5px 15px;
+  padding: 3px;
+}
+.navagationLink:hover {
+  text-decoration: underline;
+}
+
+hr {
+  border: 1px solid $brown;
+}
+.alarmsLabel {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  color: $brown;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .fontawesome {
+    font-size: 50px;
+    position: relative;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  hr {
+    margin: 0px;
+    width: 100%;
+  }
+}
+.alarmsLabel:hover {
+  .fontawesome {
+    color: darken($brown, 20%);
+  }
+}
+.plusCircle {
+  position: relative;
+  float: right;
+  transform: translateY(-30px);
+  padding: 5px;
+  cursor: pointer;
+}
+.plusCircle:hover {
+  color: darken($brown, 20%);
+}
+
+
+/*===================Alarm===================*/
+.alarm {
+  color: $brown;
+  max-width: 500px;
+}
+.alarm__container {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  justify-content: space-between;
+  min-height: 60px;
+}
+.alarm__info {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+.alarm__info__title {
+  font-size: 24px;
+}
+.alarm__info__note{
+  font-size: 14px;
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.alarm__time {
+  font-size: 20px;
+  margin: 5px;
+  font-weight: bold;
+}
+.alarm__day {
+  margin: 5px;
+}
+.alarm__icons {
+  margin: 5px;
+  display: flex;
+}
+
+.fontawesome {
+  color: $brown;
+}
+
+.fontawesome__trash:hover {
+  color: darken(red, 20%);
+}
+.fontawesome__edit:hover {
+  color: darken($brown, 20%);
+}
+
+.alarm__icon {
+  padding-left: 5px;
+}
