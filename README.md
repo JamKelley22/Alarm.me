@@ -12,4 +12,7 @@
 4. `yarn start`
 
 ### Public URL
-The project will be running [here](https://s3.amazonaws.com/alarm-me/index.html) as soon as permission issues are resolved
+The project will be running [here](http://alarm.jamkelley.com/) as soon as nginx is setup
+
+### Master Branch Frozen
+The master branch devlopment is halted currently, only commits on the README and in docs/ will be created.
